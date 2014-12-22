@@ -14,7 +14,8 @@
 
 @implementation JCTableViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -24,7 +25,8 @@
      self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -42,8 +44,15 @@
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
     
-    return 3;
-    
+    if (section == 0) {
+        return 2;
+    }
+    else if (section == 1) {
+        return 1;
+    }
+    else {
+        return 3;
+    }
 }
 
 
@@ -53,7 +62,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: CellIdentifier forIndexPath:indexPath];
     
      // Configure the cell...
-    
+    if (indexPath.section == 0) {
+        cell.textLabel.text = @"I am in section 0";
+    }
+    else if (indexPath.section == 1) {
+        cell.textLabel.text = @"another section";
+    }
+    else {
+        cell.textLabel.text = [NSString stringWithFormat:@"cell %li", indexPath.row];
+    }
     return cell;
 }
 
@@ -86,7 +103,8 @@
 
 
 // Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
